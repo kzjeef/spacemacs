@@ -31,8 +31,10 @@
     (progn
       (add-to-list 'semantic-default-submodes
                    'global-semantic-stickyfunc-mode)
-      (add-to-list 'semantic-default-submodes
-                   'global-semantic-idle-summary-mode))))
+      ;(add-to-list 'semantic-default-submodes
+       ;            'global-semantic-idle-summary-mode)
+
+      )))
 
 (defun semantic/init-srefactor ()
   (use-package srefactor
