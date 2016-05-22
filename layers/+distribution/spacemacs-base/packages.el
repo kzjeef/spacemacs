@@ -1053,61 +1053,6 @@ debug-init and load the given list of packages."
       (which-key-mode)
       (spacemacs|diminish which-key-mode " Ⓚ" " K"))))
 
-(defun spacemacs-base/init-whitespace ()
-  (use-package whitespace
-    :defer t
-    :init
-    (progn
-      (setq spacemacs-show-trailing-whitespace t)
-      (defun spacemacs//show-trailing-whitespace ()
-        (when spacemacs-show-trailing-whitespace
-          (set-face-attribute 'trailing-whitespace nil
-                              :background
-                              (face-attribute 'font-lock-comment-face
-                                              :foreground))
-          (setq show-trailing-whitespace 1)))
-      (add-hook 'prog-mode-hook 'spacemacs//show-trailing-whitespace)
-
-      (spacemacs|add-toggle whitespace
-        :status whitespace-mode
-        :on (whitespace-mode)
-        :off (whitespace-mode -1)
-        :documentation "Display whitespace."
-        :evil-leader "tw")
-      (spacemacs|add-toggle whitespace-globally
-        :status global-whitespace-mode
-        :on (global-whitespace-mode)
-        :off (global-whitespace-mode -1)
-        :documentation "Display whitespace globally."
-        :evil-leader "t C-w")
-
-      (defun spacemacs//set-whitespace-style-for-diff ()
-        "Whitespace configuration for `diff-mode'"
-        (setq-local whitespace-style '(face
-                                       tabs
-                                       tab-mark
-                                       spaces
-                                       space-mark
-                                       trailing
-                                       indentation::space
-                                       indentation::tab
-                                       newline
-                                       newline-mark)))
-      (add-hook 'diff-mode-hook 'whitespace-mode)
-      (add-hook 'diff-mode-hook 'spacemacs//set-whitespace-style-for-diff))
-    :config
-    (progn
-      (set-face-attribute 'whitespace-space nil
-                          :background nil
-                          :foreground (face-attribute 'font-lock-warning-face
-                                                      :foreground))
-      (set-face-attribute 'whitespace-tab nil
-                          :background nil)
-      (set-face-attribute 'whitespace-indentation nil
-                          :background nil)
-      (spacemacs|diminish whitespace-mode " ⓦ" " w")
-      (spacemacs|diminish global-whitespace-mode " Ⓦ" " W"))))
-
 (defun spacemacs-base/init-ws-butler ()
   (use-package ws-butler
     :if (eq 'changed dotspacemacs-whitespace-cleanup)
