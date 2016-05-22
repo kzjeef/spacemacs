@@ -15,8 +15,8 @@
   "Define a MODE specific company backend variable with default backends.
 The variable name format is company-backends-MODE."
   `(defvar ,(intern (format "company-backends-%S" mode))
-     '((company-dabbrev-code company-gtags company-etags company-keywords)
-       company-files company-dabbrev)
+     '((company-dabbrev-code company-gtags company-keywords)
+       company-files company-dabbrev )
      ,(format "Company backend list for %S" mode)))
 
 (defmacro spacemacs|add-company-hook (mode)
